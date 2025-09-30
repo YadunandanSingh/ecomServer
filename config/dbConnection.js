@@ -1,7 +1,7 @@
 // db.js
 const mongoose = require('mongoose');
 
-const dbConnection = async () => {
+const dbConnection2 = async () => {
   try {
     const mongoURI = 'mongodb://127.0.0.1:27017/authLogin'; // Replace with your MongoDB URI
     await mongoose.connect(process.env.MONGOOSE_URI, {
@@ -17,4 +17,4 @@ const dbConnection = async () => {
   
 };
 
-module.exports = dbConnection;
+module.exports = dbConnection2;
