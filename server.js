@@ -1,6 +1,6 @@
 const express = require('express');
 require('dotenv').config(); 
-const dbConnection2 = require('./config/dbConnection'); 
+const dbConnection = require('./config/dbConnection'); 
 const app = express();
 const cookieParser = require('cookie-parser')
 const cors = require('cors')
@@ -20,31 +20,8 @@ app.use(express.json());
 app.use(cookieParser());
 
 
-let isConnected = false;
-  async function dbConnection() {
-    try {
-      await mongoose.connect(process.env.MONGOOSE_URI, {
-        useNewUrlParser: true,
-        useUnifiedTopology: true,
-      });
-      isConnected = true;
-      console.log('MongoDB connected successfully!');
-    } catch (error) {
-      console.error('MongoDB connection error:', error);
-      
-    }
-  }
-
-   app.use((req, res, next) => {
-    if (!isConnected) {
-      dbConnection();
-      console.log('Database connection established');
-    }
-    next();
-  });
-
 // Connect to the database
-// dbConnection();
+dbConnection();
 
 // Serve static files from the 'uploads' directory
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
@@ -60,8 +37,6 @@ app.use('/api/payment' ,require('./routes/Payment'))
 
 
 // Start the server
-// app.listen(PORT, () => {
-//   console.log(`Server is listening on http://localhost:${PORT}`);
-// });
-
-module.exports = app;
+app.listen(PORT, () => {
+  console.log(`Server is listening on http://localhost:${PORT}`);
+});
