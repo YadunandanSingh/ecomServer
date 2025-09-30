@@ -10,8 +10,8 @@ const HerloSlide = require('./routes/HeroSlideRoutes')
 
 const PORT = process.env.PORT || 8000;
 const corsOptions = {
-  origin: ["https://supermarket-rsrc.onrender.com"], // exact frontend URL
-  credentials: true,
+  origin: [process.env.CLIENT_URL,"https://supermarket-rsrc.onrender.com","https://ecom-client-opal-theta.vercel.app"],
+  credentials: true, // This is important if you're using cookies or sessions
 };
 
 // Use express.json() middleware to parse JSON request bodies
