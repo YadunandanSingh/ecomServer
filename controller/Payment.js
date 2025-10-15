@@ -3,8 +3,8 @@ const Payment = require('../model/Payment')
 const Razorpay = require('razorpay')
 
 const instance = new Razorpay({
-    key_id: 'rzp_test_RLiilKT4GIhfef',
-    key_secret: 'oHVvmMLxgJs2f0o8lGu9UiE8',
+    key_id: process.env.RAZORPAY_KEY_ID,
+    key_secret: process.env.RAZORPAY_KEY_SECRET,
 });
 
 
